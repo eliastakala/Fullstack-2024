@@ -8,13 +8,19 @@ const StatisticLine = ({text, value}) => {
   if (text === 'Positive') {
     return(
       <tbody>
-        <tr><td>{text}</td><td>{value} %</td></tr>
+        <tr>
+          <td>{text}</td>
+          <td>{value} %</td>
+        </tr>
       </tbody>
     )
   }
   return(
     <tbody>
-      <tr><td>{text}</td><td>{value}</td></tr>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
     </tbody>
   )
 }
