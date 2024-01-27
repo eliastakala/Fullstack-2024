@@ -18,7 +18,6 @@ const MostVoted = ( {anecdotes, votes} ) => {
       <>has {maxVotes} votes</>
     </div>
   )
-  // <>{text}</>
 }
 
 const App = () => {

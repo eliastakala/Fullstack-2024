@@ -29,9 +29,6 @@ const Statistics = (props) => {
   if (props.all === 0) {
     return (
       <p>No feedback given</p>
-      // <tbody>
-      //   <tr><td>No feedback given</td></tr>
-      // </tbody>
     )
   }
   return (
