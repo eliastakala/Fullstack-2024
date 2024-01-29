@@ -1,30 +1,45 @@
 const Header = ({course}) => {
   return (
-      <h1>{course.name}</h1>
+      <h1 key = {course.id}>{course.name}</h1>
   )
 }
 
 const Part = ({part}) => {
   return (
-      <p>{part.name} {part.exercises}</p>
+    <>
+      {part.name} {part.exercises}
+    </>
   )
 }
 
-const Content = ({course}) => {
+const Content = ({parts}) => {
   return (
     <div>
-      <Part part = {course.parts[0]}/>
-      <Part part = {course.parts[1]}/>
-      <Part part = {course.parts[2]}/>
+      {parts.map(content =>
+        <p key = {content.id}>
+          <Part part = {content}></Part>
+        </p>)}
     </div>
   )
 }
 
-const Total = ({course}) => {
+const Total = ({parts}) => {
+  const numOfExercises = parts.map(part => part.exercises).reduce((sum, num) => sum + num)
   return (
     <div>
-      <p>
-        Number of exercises {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}</p>
+      <b>
+        total of {numOfExercises} exercises
+      </b>
+    </div>
+  )
+}
+
+const Course = ({course}) => {
+  return (
+    <div>
+      <Header course = {course}/>
+      <Content parts = {course.parts}/>
+      <Total parts = {course.parts}/>
     </div>
   )
 }
@@ -33,27 +48,35 @@ const App = () => {
   // const-määrittelyt
   const course = {
     name: 'Half Stack application development',
+    id: 1,
     parts: [
       {
         name: 'Fundamentals of React',
-        exercises: 10
+        exercises: 10,
+        id: 1
+        
       },
       {
         name: 'Using props to pass data',
-        exercises: 7
+        exercises: 7,
+        id: 2
       },
       {
         name: 'State of a component',
-        exercises: 14
+        exercises: 14,
+        id: 3
+      },
+      {
+        name: 'Smoti',
+        exercises: 100,
+        id: 4
       }
     ]
   }
 
   return (
     <div>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course} />
+      <Course course={course} />
     </div>
   )
 }
