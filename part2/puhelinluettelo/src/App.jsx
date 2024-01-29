@@ -18,7 +18,7 @@ const App = () => {
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
-  
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -37,7 +37,6 @@ const App = () => {
       <div>
         {persons.map((person, index) => <p key = {index}>{person.name}</p>)}
       </div>
-      <div>debug: {newName}</div>
     </div>
     
   )
