@@ -1,6 +1,6 @@
 const PersonForm = (props) => {
     return (
-    <form onSubmit = {props.onSubmit}>
+    <form onSubmit = {props.onFormSubmit}>
       <div>
         name: <input
         value = {props.name}
