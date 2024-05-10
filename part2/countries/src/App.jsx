@@ -1,38 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-
-const FilterCountries = ({filteredCountries}) => {
-  return (
-    <div>
-      {filteredCountries.length > 10
-        ? 'Too many matches, specify another filter'
-        : filteredCountries.length === 1
-        ? filteredCountries.map(c => (
-            <div key={c.name.common}>
-              <h1>{c.name.common}</h1>
-              <p>capital {c.capital[0]}</p>
-              <p>population {c.population}</p>
-              <h2>languages</h2>
-              <ul>
-                {Object.values(c.languages).map((l) => (
-                  <li key={l}>{l}</li>
-                ))}
-              </ul>
-              <img src={c.flags.png} alt={c.name.common} width="100" />
-            </div>
-          ))
-        : filteredCountries.map((c) => (
-            <div key={c.name.common}>
-              <p>{c.name.common}</p>
-            </div>
-          ))}
-    </div>
-  )
-}
+import FilterCountries from './components/FilterCountries'
+import './index.css'
 
 const App = () => {
   const [country, setCountry] = useState('')
   const [allCountries, setAllCountries] = useState([])
+  const [selectedCountry, setSelectedCountry] = useState(null)
 
   useEffect(() => {
     axios
@@ -44,6 +18,7 @@ const App = () => {
 
   const handleChange = (event) => {
     setCountry(event.target.value)
+    setSelectedCountry(null)
   }
 
   const filteredCountries = allCountries.filter(c =>
@@ -56,7 +31,11 @@ const App = () => {
         Find countries: <input value={country} onChange={handleChange} />
       </form>
       <div>
-        <FilterCountries filteredCountries={filteredCountries} />
+        <FilterCountries
+        filteredCountries={filteredCountries}
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        />
       </div>
     </div>
   )

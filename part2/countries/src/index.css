@@ -1,0 +1,5 @@
+.form-container {
+    display: flex;
+    align-items: center; /* Centers the items vertically */
+    justify-content: flex-start; /* Aligns items to the start of the flex container */
+  }
