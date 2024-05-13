@@ -5,7 +5,9 @@ import '../index.css'
 const api_key = import.meta.env.VITE_SOME_KEY
 
 const CountryInfo = ({ country }) => {
+  
   const [weather, setWeather] = useState(null)
+
   useEffect(() => {
     const lat = country.latlng[0]
     const lon = country.latlng[1]
