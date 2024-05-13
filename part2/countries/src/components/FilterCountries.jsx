@@ -3,12 +3,11 @@ import CountryInfo from "./CountryInfo"
 
 const FilterCountries = ({filteredCountries, selectedCountry, setSelectedCountry}) => {
     const showCountry = (name) => {
-      axios
-        .get(`https://studies.cs.helsinki.fi/restcountries/api/name/${name}`)
-        .then((response) => {
-          setSelectedCountry(response.data)
-        }
+      const countryToShow = filteredCountries.filter(c =>
+        c.name.common.toLowerCase() === name.toLowerCase()
       )
+      console.log('countryToShow', countryToShow[0])
+      setSelectedCountry(countryToShow[0])
     }
 
     return (
