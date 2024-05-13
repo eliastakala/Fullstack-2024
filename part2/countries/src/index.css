@@ -3,3 +3,8 @@
     align-items: center; /* Centers the items vertically */
     justify-content: flex-start; /* Aligns items to the start of the flex container */
   }
+
+.weather-icon {
+    height: 100px;
+    width: 100px;
+  }

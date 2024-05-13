@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import '../index.css'
 
 const api_key = import.meta.env.VITE_SOME_KEY
 
 const CountryInfo = ({ country }) => {
-  // get the weather data
   const [weather, setWeather] = useState(null)
   useEffect(() => {
     const lat = country.latlng[0]
@@ -22,29 +22,27 @@ const CountryInfo = ({ country }) => {
   return (
     <div>
       <h1>{country.name.common}</h1>
-      <p>capital {country.capital[0]}</p>
-      <p>population {country.population}</p>
-      <h2>languages</h2>
+      <p>Capital: {country.capital[0]}</p>
+      <p>Population: {country.population}</p>
+      <h2>Languages</h2>
       <ul>
         {Object.values(country.languages).map((l) => (
           <li key={l}>{l}</li>
         ))}
       </ul>
-      <img src={country.flags.png} alt={country.name.common} width="100" />
+      <img src={country.flags.png} alt={country.name.common} width="200" />
       {weather && (
         <div>
           <h2>Weather in {country.capital[0]}</h2>
-          <p><strong>temperature:</strong> {weather.main.temp} Celsius</p>
-          <p><strong>wind:</strong> {weather.wind.speed} m/s</p>
-
+          <p><strong>Temperature:</strong> {weather.main.temp} Celsius</p>
           {weather.weather[0].description && (
             <img
               src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
               alt={weather.weather[0].description}
+              className="weather-icon"
             />
           )}
-
-          <p><strong>description:</strong> {weather.weather[0].description}</p>
+          <p><strong>Wind:</strong> {weather.wind.speed} m/s</p>
         </div>
       )}
     </div>
